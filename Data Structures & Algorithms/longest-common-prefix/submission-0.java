@@ -1,0 +1,34 @@
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        int n = strs.length;
+        
+        if (n == 1) 
+            return strs[0];
+
+        String longest = strs[0];
+        
+        for (int i = 1;i<n;i++) {
+            longest = findCommonPrefix(longest, strs[i]);
+        }
+
+        return longest;
+    }
+
+    private String findCommonPrefix(String str1, String str2) {
+        int len1 = str1.length();
+        int len2 = str2.length();
+        if (len1 == 0 || len2 == 0) {
+            return "";
+        }
+
+        int min = len1 > len2 ? len2 : len1;
+        String common = "";
+        for(int i=0;i<min;i++) {
+            if(str1.charAt(i) != str2.charAt(i)) {
+                break;
+            }
+            common = common + str1.charAt(i);
+        }
+        return common;
+    }
+}
